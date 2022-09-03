@@ -14,8 +14,13 @@ function addUser(data, db = conn) {
   return db('users').insert(data)
 }
 
+function delUser(id, db = conn) {
+  return db('users').del().where('id', id)
+}
+
 module.exports = {
   getAllUsers,
   getOneUser,
   addUser,
+  delUser,
 }

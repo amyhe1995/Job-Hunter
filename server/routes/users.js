@@ -28,4 +28,11 @@ router.post('/', async (req, res) => {
   res.json(oneUser)
 })
 
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id
+  await db.delUser(id)
+  const users = await db.getAllUsers()
+  res.json(users)
+})
+
 module.exports = router

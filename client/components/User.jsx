@@ -1,4 +1,5 @@
 import React from 'react'
+import { deleteUser } from '../api'
 
 function User(props) {
   return (
@@ -10,6 +11,7 @@ function User(props) {
           <p>Gender: {x.gender}</p>
           <p>Email: {x.email}</p>
           <p>Mobile: {x.mobile}</p>
+          <button onClick={() => deleteUser(x.id)}>Delete</button>
         </div>
       ))}
     </>
