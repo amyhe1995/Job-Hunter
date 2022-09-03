@@ -5,6 +5,10 @@ import User from './User'
 
 function App() {
   const [users, setUsers] = useState([])
+  const [addActive, setAddActive] = useState(false)
+  const handleAddButton = () => {
+    addActive ? setAddActive(false) : setAddActive(true)
+  }
 
   useEffect(async () => {
     const arr = await getUsers()
@@ -19,7 +23,8 @@ function App() {
         {users.map((user) => (
           <User key={user.id} user={user} users={users} setUsers={setUsers} />
         ))}
-        <AddUser />
+        <button onClick={handleAddButton}>Add User</button>
+        {addActive && <AddUser />}
       </ul>
     </div>
   )
