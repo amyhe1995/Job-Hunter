@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getUsers } from '../api'
+import AddUser from './AddUser'
 import User from './User'
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   useEffect(async () => {
     const arr = await getUsers()
     setUsers(arr)
-  }, [])
+  }, [users])
 
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
       <h2>Users:</h2>
       <ul>
         <User users={users} />
+        <AddUser />
       </ul>
     </>
   )
