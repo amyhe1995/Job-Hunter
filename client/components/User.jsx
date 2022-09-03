@@ -33,7 +33,7 @@ function User(props) {
     <>
       {!isEdit ? (
         <div>
-          <h3>{name}</h3>
+          <h4>{name}</h4>
           <p>{address}</p>
           <p>{DOB}</p>
           <p>{gender}</p>

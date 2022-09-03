@@ -2,3 +2,9 @@ body {
   background-color: blanchedalmond;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.container {
+  text-align: center;
+}
+button {
+  margin: 10px;
+}

@@ -20,27 +20,27 @@ function AddUser() {
     <div>
       <form onSubmit={handleSubmit}>
         <label>
-          Name
+          Name:
           <input type="text" name="name" onChange={handleChange} />
         </label>
         <label>
-          Address
+          Address:
           <input type="text" name="address" onChange={handleChange} />
         </label>
         <label>
-          DOB
+          DOB:
           <input type="text" name="DOB" onChange={handleChange} />
         </label>
         <label>
-          gender
+          gender:
           <input type="text" name="gender" onChange={handleChange} />
         </label>
         <label>
-          Email
+          Email:
           <input type="text" name="email" onChange={handleChange} />
         </label>
         <label>
-          Mobile
+          Mobile:
           <input type="text" name="mobile" onChange={handleChange} />
         </label>
         <button> Submit</button>

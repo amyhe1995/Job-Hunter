@@ -12,8 +12,8 @@ function App() {
   }, [users])
 
   return (
-    <>
-      <h1>React is running!</h1>
+    <div className="container">
+      <h1>User Management System</h1>
       <h2>Users:</h2>
       <ul>
         {users.map((user) => (
@@ -21,7 +21,7 @@ function App() {
         ))}
         <AddUser />
       </ul>
-    </>
+    </div>
   )
 }
 
