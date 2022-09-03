@@ -12,6 +12,11 @@ export async function addNewUser(newUser) {
 
 export async function deleteUser(id) {
   const resp = await request.delete('/api/v1/users/' + id)
+  return resp.body
+}
+
+export async function updateUser(id, formData) {
+  const resp = await request.patch('/api/v1/users/' + id).send(formData)
   console.log(id)
   return resp.body
 }

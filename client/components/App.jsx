@@ -16,7 +16,9 @@ function App() {
       <h1>React is running!</h1>
       <h2>Users:</h2>
       <ul>
-        <User users={users} />
+        {users.map((user) => (
+          <User key={user.id} user={user} users={users} setUsers={setUsers} />
+        ))}
         <AddUser />
       </ul>
     </>

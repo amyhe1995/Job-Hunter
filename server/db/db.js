@@ -18,9 +18,14 @@ function delUser(id, db = conn) {
   return db('users').del().where('id', id)
 }
 
+function updateUser(id, formData, db = conn) {
+  return db('users').update(formData).where('id', id)
+}
+
 module.exports = {
   getAllUsers,
   getOneUser,
   addUser,
   delUser,
+  updateUser,
 }

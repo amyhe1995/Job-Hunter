@@ -35,4 +35,19 @@ router.delete('/:id', async (req, res) => {
   res.json(users)
 })
 
+router.patch('/:id', async (req, res) => {
+  const id = req.params.id
+  const { name, address, DOB, gender, email, mobile } = req.body
+  const formData = {
+    name,
+    address,
+    DOB,
+    gender,
+    email,
+    mobile,
+  }
+  await db.updateUser(id, formData)
+  const user = await db.getOneUser(id)
+  res.json(user)
+})
 module.exports = router
