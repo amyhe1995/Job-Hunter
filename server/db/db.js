@@ -3,9 +3,9 @@ const config = require('./knexfile').development
 const conn = require('knex')(config)
 
 function getAllUsers(db = conn) {
-  return db('users')
+  return db('users').select()
 }
 
 module.exports = {
-  getAllUsers
+  getAllUsers,
 }
