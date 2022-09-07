@@ -9,7 +9,7 @@
 
 ## Full Stack
 
-you can make changes to both the front and back end. you can add, delete and update use information.
+you can make changes to both the front and back end. you can add, delete and update user information.
 
 ## Setup
 
