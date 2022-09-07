@@ -15,6 +15,8 @@
 
     ```sh
     npm install
+    npm run migrate:latest
+    npm run seed:run
     npm run dev
     ```
   </details>
