@@ -7,6 +7,10 @@
 - superagent
 - sqlite3
 
+## Full Stack
+
+you can make changes to both the front and back end. you can add, delete and update use information.
+
 ## Setup
 
 - [ ] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
