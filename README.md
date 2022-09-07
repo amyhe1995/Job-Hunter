@@ -22,5 +22,6 @@ you can make changes to both the front and back end. you can add, delete and upd
     npm run migrate:latest
     npm run seed:run
     npm run dev
+    Check it by visiting the relevant route on http://localhost:3000/ 
     ```
   </details>
