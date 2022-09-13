@@ -33,14 +33,34 @@ function User(props) {
     <>
       {!isEdit ? (
         <div>
-          <h4>{name}</h4>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>Email</th>
+              <th>Mobile</th>
+            </tr>
+            <tr>
+              <th>{name}</th>
+              <th>{address}</th>
+              <th>{DOB}</th>
+              <th>{gender}</th>
+              <th>{email}</th>
+              <th>{mobile}</th>
+              <button onClick={() => deleteUser(id)}>Delete</button>
+              <button onClick={handleEdit}>Edit</button>
+            </tr>
+          </table>
+          {/* <h4>{name}</h4>
           <p>{address}</p>
           <p>{DOB}</p>
           <p>{gender}</p>
           <p>{email}</p>
           <p>{mobile}</p>
           <button onClick={() => deleteUser(id)}>Delete</button>
-          <button onClick={handleEdit}>Edit</button>
+          <button onClick={handleEdit}>Edit</button> */}
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
