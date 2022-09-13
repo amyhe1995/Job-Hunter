@@ -7,6 +7,10 @@
 - superagent
 - sqlite3
 
+## Full Stack
+
+you can make changes to both the front and back end. you can add, delete and update user information.
+
 ## Setup
 
 - [ ] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
@@ -15,6 +19,9 @@
 
     ```sh
     npm install
+    npm run migrate:latest
+    npm run seed:run
     npm run dev
+    Check it by visiting the relevant route on http://localhost:3000/ 
     ```
   </details>
