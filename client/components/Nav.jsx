@@ -26,12 +26,7 @@ function Nav() {
           <NavLink to="/" onClick={handleLogOff}>
             Log off
           </NavLink>
-          <p>
-            <span role="img" alt={user.icon}>
-              {user.icon}
-            </span>
-            {' ' + user.username}
-          </p>
+          <p>{' ' + user.username}</p>
         </IfAuthenticated>
         <IfNotAuthenticated>
           <NavLink to="/" onClick={handleSignIn}>
@@ -39,7 +34,6 @@ function Nav() {
           </NavLink>
         </IfNotAuthenticated>
       </NavGroup>
-      <h1>User</h1>
     </>
   )
 }

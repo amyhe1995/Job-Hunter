@@ -1,7 +1,11 @@
 const emptyUser = {
   auth0Id: '',
   username: '',
-  icon: '',
+  address: '',
+  DOB: '',
+  gender: '',
+  email: '',
+  mobile: '',
 }
 
 export default function user(state = emptyUser, action) {

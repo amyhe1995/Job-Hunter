@@ -1,31 +1,50 @@
 const express = require('express')
 const router = express.Router()
-
+const checkJwt = require('../auth0')
 const db = require('../db/db')
 
-router.get('/', async (req, res) => {
-  try {
-    const users = await db.getAllUsers()
-    res.json(users)
-  } catch (err) {
-    res.status(500).send(err.message)
+// GET /api/v1/users
+router.get('/', checkJwt, (req, res) => {
+  const auth0_id = req.user?.sub
+  if (!auth0_id) {
+    res.send(null)
+  } else {
+    db.getOneUser(auth0_id)
+      .then((user) => {
+        res.json(user ? user : null)
+      })
+      .catch((err) => res.status(500).send(err.message))
   }
 })
 
-router.post('/', async (req, res) => {
-  const { name, address, DOB, gender, email, mobile } = req.body
-  const data = {
-    name,
+// POST /api/v1/users
+router.post('/', checkJwt, (req, res) => {
+  const auth0_id = req.user?.sub
+  const { username, address, DOB, gender, email, mobile } = req.body
+  const userDetails = {
+    auth0_id,
+    username,
     address,
     DOB,
     gender,
     email,
     mobile,
   }
-  const idArr = await db.addUser(data)
-  const id = idArr[0]
-  const oneUser = await db.getOneUser(id)
-  res.json(oneUser)
+
+  db.userExists(username)
+    .then((usernameTaken) => {
+      if (usernameTaken) throw new Error('Username Taken')
+    })
+    .then(() => db.addUser(userDetails))
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.error(err)
+      if (err.message === 'Username Taken') {
+        res.status(403).send('Username Taken')
+      } else {
+        res.status(500).send(err.message)
+      }
+    })
 })
 
 router.delete('/:id', async (req, res) => {

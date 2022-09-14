@@ -1,32 +1,45 @@
-import React, { useState, useEffect } from 'react'
-import { getUsers } from '../api'
-import AddUser from './AddUser'
-import User from './User'
+import React, { useEffect } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useAuth0 } from '@auth0/auth0-react'
+import Nav from './Nav'
+import Users from './Users'
+import Register from './Register'
+import { clearLoggedInUser, updateLoggedInUser } from '../actions/loggedInUser'
+import { useCacheUser } from '../auth0-utils'
+import { getUser } from '../api'
 
 function App() {
-  const [users, setUsers] = useState([])
-  const [addActive, setAddActive] = useState(false)
-  const handleAddButton = () => {
-    addActive ? setAddActive(false) : setAddActive(true)
-  }
+  const token = useSelector((state) => state.loggedInUser.token)
+  console.log(token)
+  useCacheUser()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
 
-  useEffect(async () => {
-    const arr = await getUsers()
-    setUsers(arr)
-  }, [users])
+  useEffect(() => {
+    if (!isAuthenticated) {
+      dispatch(clearLoggedInUser())
+    } else {
+      getAccessTokenSilently()
+        .then((token) => getUser(token))
+        .then((userInDb) => {
+          userInDb
+            ? dispatch(updateLoggedInUser(userInDb))
+            : navigate('/register')
+        })
+        .catch((err) => console.error(err))
+    }
+  }, [isAuthenticated])
 
   return (
-    <div className="container">
-      <h1>User Management System</h1>
-      <h2>Users:</h2>
-      <ul>
-        {users.map((user) => (
-          <User key={user.id} user={user} users={users} setUsers={setUsers} />
-        ))}
-        <button onClick={handleAddButton}>Add User</button>
-        {addActive && <AddUser />}
-      </ul>
-    </div>
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Users />} />
+        <Route path="register" element={<Register />} />
+      </Routes>
+    </>
   )
 }
 

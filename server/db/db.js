@@ -7,11 +7,17 @@ function getAllUsers(db = conn) {
 }
 
 function getOneUser(id, db = conn) {
-  return db('users').select().where('id', id).first()
+  return db('users').select().where('auth0_id', id).first()
 }
 
 function addUser(data, db = conn) {
   return db('users').insert(data)
+}
+
+function userExists(username, db = conn) {
+  return db('users')
+    .where('username', username)
+    .then((usersFound) => usersFound.length > 0)
 }
 
 function delUser(id, db = conn) {
@@ -26,6 +32,7 @@ module.exports = {
   getAllUsers,
   getOneUser,
   addUser,
+  userExists,
   delUser,
   updateUser,
 }
