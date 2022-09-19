@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import Nav from './Nav'
 import Users from './Users'
@@ -10,8 +10,8 @@ import { useCacheUser } from '../auth0-utils'
 import { getUser } from '../api'
 
 function App() {
-  const token = useSelector((state) => state.loggedInUser.token)
-  console.log(token)
+  // const token = useSelector((state) => state.loggedInUser.token)
+
   useCacheUser()
   const dispatch = useDispatch()
   const navigate = useNavigate()

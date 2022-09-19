@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import { getUsers } from '../api'
-import AddUser from './AddUser'
-import User from './User'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 function Users() {
-  const [users, setUsers] = useState([])
-  const [addActive, setAddActive] = useState(false)
-  const handleAddButton = () => {
-    addActive ? setAddActive(false) : setAddActive(true)
-  }
-
-  useEffect(async () => {
-    const arr = await getUsers()
-    setUsers(arr)
-  }, [users])
+  const user = useSelector((state) => state.loggedInUser)
 
   return (
     <div className="container">
       <h1>User Management System</h1>
-      <h2>Users:</h2>
-      <ul>
-        {users.map((user) => (
-          <User key={user.id} user={user} users={users} setUsers={setUsers} />
-        ))}
-        <button onClick={handleAddButton}>Add User</button>
-        {addActive && <AddUser />}
-      </ul>
+      {user && (
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+          </tr>
+          <tr>
+            <th>{user.username}</th>
+            <th>{user.address}</th>
+            <th>{user.DOB}</th>
+            <th>{user.gender}</th>
+            <th>{user.mobile}</th>
+          </tr>
+        </table>
+      )}
     </div>
   )
 }
