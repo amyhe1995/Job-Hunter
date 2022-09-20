@@ -21,11 +21,11 @@ function userExists(username, db = conn) {
 }
 
 function delUser(id, db = conn) {
-  return db('users').del().where('id', id)
+  return db('users').del().where('auth0_id', id)
 }
 
 function updateUser(id, formData, db = conn) {
-  return db('users').update(formData).where('id', id)
+  return db('users').update(formData).where('auth0_id', id)
 }
 
 module.exports = {

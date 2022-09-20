@@ -16,7 +16,6 @@ function Register() {
     address: '',
     DOB: '',
     gender: '',
-    email: '',
     mobile: '',
   })
   const [errorMsg, setErrorMsg] = useState('')
@@ -39,6 +38,7 @@ function Register() {
       email: user.email,
       ...form,
     }
+    console.log(userInfo)
     addNewUser(userInfo, user.token)
       .then(() => dispatch(updateLoggedInUser(userInfo)))
       .catch((err) => setErrorMsg(err.message))

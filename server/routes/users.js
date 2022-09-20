@@ -18,19 +18,18 @@ router.get('/', checkJwt, (req, res) => {
 })
 
 // POST /api/v1/users
-router.post('/', checkJwt, (req, res) => {
-  const auth0_id = req.user?.sub
-  const { username, address, DOB, gender, email, mobile } = req.body
+router.post('/', (req, res) => {
+  const auth0_id = req.body.auth0Id
+  const { username, address, DOB, gender, mobile } = req.body
   const userDetails = {
     auth0_id,
     username,
     address,
     DOB,
     gender,
-    email,
     mobile,
   }
-
+  console.log(userDetails)
   db.userExists(username)
     .then((usernameTaken) => {
       if (usernameTaken) throw new Error('Username Taken')
