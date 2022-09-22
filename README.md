@@ -9,7 +9,7 @@
 
 ## Full Stack
 
-you can make changes to both the front and back end. you can add, delete and update user information.
+you can make changes to both the front and back end. you can add, delete and update user information. In auth Branch, only user can update their infor.
 
 ## Setup
 
